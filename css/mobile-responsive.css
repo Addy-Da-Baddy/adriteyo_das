@@ -96,3 +96,117 @@
         font-size: 14px;
     }
 }
+
+/* Mobile styles for new sections */
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background-color: var(--bg-primary);
+        padding: 20px 0;
+        transition: left var(--transition-speed);
+        box-shadow: 0 5px 10px var(--shadow);
+        z-index: 999;
+    }
+    
+    .nav-links.active {
+        left: 0;
+    }
+    
+    .nav-links li {
+        margin: 15px 0;
+        text-align: center;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .achievements-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .education-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .experience-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .experience-timeline {
+        padding-left: 15px;
+    }
+    
+    .experience-item {
+        padding: 20px 15px;
+    }
+    
+    .experience-item::before {
+        left: -23px;
+        width: 10px;
+        height: 10px;
+    }
+    
+    .achievement-item {
+        padding: 15px;
+    }
+    
+    .skill-category {
+        padding: 15px;
+    }
+    
+    .skill-tag {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .experience-timeline::before {
+        left: 10px;
+    }
+    
+    .experience-item::before {
+        left: -18px;
+        width: 8px;
+        height: 8px;
+    }
+    
+    .achievement-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .achievement-header i {
+        font-size: 1.2rem;
+    }
+    
+    .experience-details .company {
+        font-size: 0.95rem;
+    }
+    
+    .experience-details .location {
+        font-size: 0.85rem;
+    }
+    
+    .skill-items {
+        gap: 6px;
+    }
+    
+    .skill-tag {
+        font-size: 0.75rem;
+        padding: 4px 8px;
+    }
+}

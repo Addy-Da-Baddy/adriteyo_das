@@ -392,4 +392,59 @@ document.addEventListener('DOMContentLoaded', function() {
         // FormSubmit will handle form submission
         // No need to prevent default - let the form submit naturally
     });
+    
+    // Add staggered animations to new sections
+    const newSectionsObserverOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const newSectionsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const element = entry.target;
+                
+                // Add staggered animation delays
+                if (element.classList.contains('skill-category')) {
+                    const index = Array.from(element.parentElement.children).indexOf(element);
+                    element.style.animationDelay = `${index * 0.1}s`;
+                    element.classList.add('animate-in');
+                }
+                
+                if (element.classList.contains('achievement-item')) {
+                    const index = Array.from(element.parentElement.children).indexOf(element);
+                    element.style.animationDelay = `${index * 0.2}s`;
+                    element.classList.add('animate-in');
+                }
+                
+                if (element.classList.contains('experience-item')) {
+                    const index = Array.from(element.parentElement.children).indexOf(element);
+                    element.style.animationDelay = `${index * 0.3}s`;
+                    element.classList.add('animate-in');
+                }
+                
+                newSectionsObserver.unobserve(element);
+            }
+        });
+    }, newSectionsObserverOptions);
+
+    // Observe all new section elements
+    document.querySelectorAll('.skill-category, .achievement-item, .experience-item, .education-item').forEach(el => {
+        newSectionsObserver.observe(el);
+    });
+    
+    // Add floating effect to skill tags
+    document.querySelectorAll('.skill-tag').forEach((tag, index) => {
+        tag.style.animationDelay = `${index * 0.05}s`;
+        
+        // Add random float animation
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                tag.style.transform = 'translateY(-2px)';
+                setTimeout(() => {
+                    tag.style.transform = 'translateY(0)';
+                }, 300);
+            }
+        }, 2000 + Math.random() * 3000);
+    });
 });
