@@ -363,13 +363,33 @@ document.addEventListener('DOMContentLoaded', function() {
     const successMessage = document.querySelector('.response.success');
     const errorMessage = document.querySelector('.response.error');
     
-    // Just add a loading state while the form is submitting
+    // Check for success parameter in URL (for form submission redirect)
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('success')) {
+        // Scroll to contact form
+        document.getElementById('contact').scrollIntoView();
+        
+        // Show success message
+        successMessage.classList.remove('hidden');
+        
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+            successMessage.classList.add('hidden');
+        }, 5000);
+        
+        // Remove success parameter from URL without reloading the page
+        const newUrl = window.location.pathname;
+        history.pushState({}, document.title, newUrl);
+    }
+    
+    // Add loading state while the form is submitting
     contactForm.addEventListener('submit', function(e) {
-        // Show loading state
+        // We'll use this for the loading state only
         const submitButton = contactForm.querySelector('button[type="submit"]');
         submitButton.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Sending...';
         submitButton.disabled = true;
         
-        // FormSubmit handles the rest automatically
+        // FormSubmit will handle form submission
+        // No need to prevent default - let the form submit naturally
     });
 });
