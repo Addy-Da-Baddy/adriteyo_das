@@ -358,14 +358,11 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(section);
     });
     
-    // Initialize EmailJS
+    // Initialize EmailJS with your user ID (email)
     (function() {
-        // Replace with your actual EmailJS user ID - You'll need to update this
-        emailjs.init("YOUR_USER_ID");
-        // After creating your EmailJS account, replace "YOUR_USER_ID" with the actual User ID from your EmailJS dashboard
+        emailjs.init("das.adriteyo@gmail.com");
     })();
 
-    // Form submission using EmailJS
     const contactForm = document.getElementById('contact-form');
     const successMessage = document.querySelector('.response.success');
     const errorMessage = document.querySelector('.response.error');
@@ -392,8 +389,7 @@ document.addEventListener('DOMContentLoaded', function() {
             to_name: 'Adriteyo Das'
         };
         
-        // Send email using EmailJS
-        emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams) // Update these with your actual service ID and template ID from EmailJS
+        emailjs.send('service_y8jcxc7', 'template_flri54n', templateParams) 
             .then(function(response) {
                 // Success
                 successMessage.classList.remove('hidden');
@@ -401,7 +397,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Reset form
                 contactForm.reset();
-                
+        
                 // Restore button
                 submitButton.innerHTML = originalButtonText;
                 submitButton.disabled = false;
