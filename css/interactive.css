@@ -1,0 +1,184 @@
+/* Custom cursor and interactive elements */
+
+/* Hide default cursor */
+body {
+    cursor: none;
+}
+
+/* Custom cursor */
+.custom-cursor {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--accent);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background-color 0.2s;
+    mix-blend-mode: difference;
+}
+
+.cursor-trail {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: var(--accent);
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    opacity: 0.6;
+    transition: left var(--delay), top var(--delay);
+}
+
+/* Custom cursor states */
+.cursor-interactive {
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+    border: 2px solid var(--accent);
+    mix-blend-mode: normal;
+}
+
+/* Interactive form styles */
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.form-group::before {
+    content: attr(data-label);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-100%);
+    font-size: 0.8rem;
+    color: var(--comment);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.form-group.active::before {
+    opacity: 1;
+    transform: translateY(-120%);
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(46, 160, 67, 0.2);
+}
+
+/* Typing animation for section headers */
+@keyframes typeHeader {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+.typing-animation {
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typeHeader 1.5s steps(30) forwards;
+}
+
+/* Floating tech terms in background */
+.floating-tech-terms {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.floating-term {
+    position: absolute;
+    font-size: 0.7rem;
+    color: var(--comment);
+    opacity: 0.1;
+    white-space: nowrap;
+    animation: floatTerm linear infinite;
+}
+
+@keyframes floatTerm {
+    0% {
+        transform: translateX(-100px) translateY(0) rotate(-5deg);
+    }
+    50% {
+        transform: translateX(calc(100vw + 100px)) translateY(30px) rotate(5deg);
+    }
+    100% {
+        transform: translateX(-100px) translateY(0) rotate(-5deg);
+    }
+}
+
+/* Improved section transitions */
+section {
+    transition: opacity 0.5s ease;
+    opacity: 0;
+    animation: fadeInSection 0.5s ease forwards;
+    animation-delay: 0.2s;
+}
+
+@keyframes fadeInSection {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover effect for social links */
+.social-links a {
+    position: relative;
+    overflow: hidden;
+}
+
+.social-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.social-links a:hover::after {
+    transform: translateX(0);
+}
+
+/* Smoother button hover effects */
+.btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--accent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.btn:hover::after {
+    opacity: 0.1;
+}

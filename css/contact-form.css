@@ -1,0 +1,129 @@
+/* Contact form EmailJS styling */
+.response {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: var(--border-radius);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    transition: opacity 0.3s ease;
+}
+
+.response.hidden {
+    display: none;
+    opacity: 0;
+}
+
+.response i {
+    margin-right: 8px;
+}
+
+.response.success {
+    background-color: rgba(76, 175, 80, 0.1);
+    border-left: 3px solid #4CAF50;
+    color: #4CAF50;
+}
+
+.response.error {
+    background-color: rgba(244, 67, 54, 0.1);
+    border-left: 3px solid #F44336;
+    color: #F44336;
+}
+
+.contact-form button[type="submit"] {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.contact-form button[type="submit"]:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.contact-form button[type="submit"]::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: var(--accent);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.3;
+    transition: width 0.5s, height 0.5s;
+    z-index: -1;
+}
+
+.contact-form button[type="submit"]:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.form-group {
+    position: relative;
+}
+
+.form-group input,
+.form-group textarea {
+    background-color: var(--bg-terminal);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-family: 'JetBrains Mono', monospace;
+    padding: 10px 15px;
+    width: 100%;
+    border-radius: var(--border-radius);
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(var(--accent-rgb), 0.2);
+}
+
+/* Data attributes to show command-like labels */
+.form-group[data-label]::before {
+    content: attr(data-label) ": ";
+    position: absolute;
+    top: -8px;
+    left: 15px;
+    background-color: var(--bg-color);
+    padding: 0 5px;
+    color: var(--accent);
+    font-size: 0.75rem;
+    z-index: 1;
+}
+
+/* Terminal button animation */
+@keyframes buttonSend {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.contact-form button[type="submit"]:hover i {
+    animation: buttonSend 0.5s ease;
+}
+
+.fa-circle-notch.fa-spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

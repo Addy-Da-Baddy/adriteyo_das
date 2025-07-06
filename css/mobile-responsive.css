@@ -1,0 +1,98 @@
+/* Enhanced Mobile Responsiveness */
+
+/* Small screens (phones) */
+@media (max-width: 576px) {
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-section h2 {
+        font-size: 1rem;
+    }
+    
+    .terminal-container {
+        width: 100%;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-card {
+        height: auto;
+        min-height: 180px;
+    }
+    
+    .resume-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .resume-buttons .btn {
+        width: 100%;
+    }
+    
+    .contact-form .form-group {
+        margin-bottom: 15px;
+    }
+}
+
+/* Medium screens (tablets) */
+@media (min-width: 577px) and (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+    
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+}
+
+/* Header and navigation improvements for mobile */
+@media (max-width: 768px) {
+    header {
+        padding: 10px 0;
+    }
+    
+    .nav-links {
+        background-color: var(--bg-secondary);
+        box-shadow: 0 5px 15px var(--shadow);
+        padding: 20px;
+        border-radius: 0 0 var(--border-radius) var(--border-radius);
+    }
+    
+    .nav-links li {
+        margin: 10px 0;
+    }
+    
+    /* Improve hamburger button */
+    .hamburger .line {
+        transition: all 0.3s ease;
+    }
+    
+    .hamburger.active .line:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .hamburger.active .line:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger.active .line:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+}
+
+/* Optimize font sizes for different screens */
+@media (max-width: 992px) {
+    html {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    html {
+        font-size: 14px;
+    }
+}

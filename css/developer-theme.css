@@ -1,0 +1,109 @@
+/* Syntax highlighting */
+.code-snippet .keyword {
+    color: var(--keyword);
+}
+
+.code-snippet .function {
+    color: var(--function);
+}
+
+.code-snippet .string {
+    color: var(--string);
+}
+
+.code-snippet .comment {
+    color: var(--comment);
+}
+
+.code-snippet .variable {
+    color: var(--variable);
+}
+
+/* More developer-themed elements */
+.code-line-numbers {
+    counter-reset: line;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding-top: 15px;
+    padding-right: 10px;
+    color: var(--comment);
+    border-right: 1px solid var(--border);
+    opacity: 0.6;
+}
+
+.code-line-number::before {
+    counter-increment: line;
+    content: counter(line);
+    display: block;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    text-align: right;
+    padding-right: 5px;
+}
+
+.about-section p code {
+    background-color: var(--code-bg);
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+/* Matrix rain animation */
+@keyframes matrixRain {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(1000%);
+    }
+}
+
+.matrix-column {
+    position: absolute;
+    top: 0;
+    font-size: 1.2rem;
+    color: var(--accent);
+    opacity: 0.2;
+    pointer-events: none;
+    animation: matrixRain 10s linear infinite;
+}
+
+/* Cool gradient border for cards */
+.gradient-border {
+    position: relative;
+    border-radius: var(--border-radius);
+    padding: 1px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+    margin-bottom: 20px;
+}
+
+.gradient-border-content {
+    background-color: var(--bg-secondary);
+    border-radius: calc(var(--border-radius) - 1px);
+    padding: 20px;
+}
+
+/* Command line prompt animation */
+@keyframes commandPrompt {
+    0%, 100% {
+        border-right-color: var(--accent);
+    }
+    50% {
+        border-right-color: transparent;
+    }
+}
+
+.command-prompt {
+    display: inline-block;
+    border-right: 2px solid var(--accent);
+    animation: commandPrompt 1s infinite;
+}
+
+/* Code indent guide */
+.code-indent-guide {
+    border-left: 1px dashed var(--border);
+    opacity: 0.2;
+    margin-left: 20px;
+    padding-left: 10px;
+}

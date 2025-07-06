@@ -1,0 +1,166 @@
+/* Enhanced Animation Effects */
+
+/* Subtle background grid effect */
+.tech-grid-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.05;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Smooth hover transitions */
+a, button, .project-card, .nav-links li {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+/* Better blinking cursor animation */
+@keyframes blinkCursor {
+    0%, 70% { 
+        opacity: 1;
+    }
+    71%, 100% { 
+        opacity: 0;
+    }
+}
+
+.blink-cursor {
+    display: inline-block;
+    animation: blinkCursor 1.2s infinite;
+    font-weight: 100;
+}
+
+/* Enhanced project card animations */
+.project-card {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-alt));
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+}
+
+.project-card:hover::before {
+    transform: translateX(0);
+}
+
+/* Glowing effect on hover */
+.project-card:hover {
+    box-shadow: 0 5px 15px rgba(46, 160, 67, 0.1);
+}
+
+/* Improved matrix character animations */
+@keyframes matrixCharFall {
+    0% {
+        transform: translateY(-100%) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(500%) rotate(30deg);
+        opacity: 0;
+    }
+}
+
+.matrix-char {
+    position: absolute;
+    color: var(--accent);
+    font-size: 0.8rem;
+    animation: matrixCharFall 3s linear forwards;
+    pointer-events: none;
+}
+
+/* Name hover effect enhancement */
+.name {
+    position: relative;
+    display: inline-block;
+}
+
+.original-name, .hacker-alias {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.original-name {
+    opacity: 1;
+}
+
+.hacker-alias {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+.name:hover .original-name {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.name:hover .hacker-alias {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Add subtle shimmer effect to accent elements */
+@keyframes shimmer {
+    0% {
+        background-position: -100% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.highlight, .keyword, .cmd-prompt {
+    background: linear-gradient(90deg, 
+        var(--accent) 0%, 
+        var(--accent) 45%, 
+        var(--accent-alt) 50%, 
+        var(--accent) 55%, 
+        var(--accent) 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 4s infinite linear;
+}
+
+/* Enhanced scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}

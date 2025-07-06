@@ -1,0 +1,55 @@
+.console-output {
+    background-color: var(--bg-terminal);
+    padding: 15px;
+    border-radius: var(--border-radius);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    position: relative;
+    border-left: 3px solid var(--accent);
+}
+
+.console-output::before {
+    content: '/* system info */';
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    background-color: var(--bg-terminal);
+    padding: 0 10px;
+    color: var(--comment);
+    font-size: 0.8rem;
+}
+
+.output-line {
+    display: block;
+    margin-bottom: 5px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.output-line::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+}
+
+.output-line code {
+    color: var(--function);
+    background-color: rgba(0,0,0,0.2);
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+.output-line:last-child {
+    margin-bottom: 0;
+}
+
+/* Lower case everything */
+body {
+    text-transform: lowercase;
+}
+
+h1, h2, h3, h4, h5, h6, p, a, span, button, input, textarea {
+    text-transform: lowercase;
+}
