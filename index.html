@@ -247,7 +247,7 @@
                             <div class="terminal-line">
                                 <span class="command">send_message</span> <span class="argument">--to das.adriteyo@gmail.com</span>
                             </div>
-                            <form id="contact-form" class="contact-form">
+                            <form id="contact-form" class="contact-form" action="https://formsubmit.co/das.adriteyo@gmail.com" method="POST">
                                 <div class="form-group" data-label="name">
                                     <input type="text" id="name" name="name" placeholder="Your name" required>
                                 </div>
@@ -257,6 +257,11 @@
                                 <div class="form-group" data-label="message">
                                     <textarea id="message" name="message" placeholder="Your message" required></textarea>
                                 </div>
+                                <!-- FormSubmit configuration -->
+                                <input type="hidden" name="_subject" value="New message from portfolio website">
+                                <input type="hidden" name="_template" value="table">
+                                <input type="hidden" name="_captcha" value="false">
+                                <input type="hidden" name="_next" value="https://adriteyo.vercel.app/thanks.html">
                                 <button type="submit" class="btn">
                                     <i class="fas fa-paper-plane"></i> Send Message
                                 </button>
@@ -283,7 +288,6 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/interactive.js"></script>
 </body>

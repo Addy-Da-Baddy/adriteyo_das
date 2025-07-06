@@ -358,70 +358,18 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(section);
     });
     
-    // Initialize EmailJS with your user ID (email)
-    (function() {
-        emailjs.init("das.adriteyo@gmail.com");
-    })();
-
+    // Contact form handling with FormSubmit
     const contactForm = document.getElementById('contact-form');
     const successMessage = document.querySelector('.response.success');
     const errorMessage = document.querySelector('.response.error');
     
+    // Just add a loading state while the form is submitting
     contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
         // Show loading state
         const submitButton = contactForm.querySelector('button[type="submit"]');
-        const originalButtonText = submitButton.innerHTML;
         submitButton.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Sending...';
         submitButton.disabled = true;
         
-        // Get form values
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
-        
-        // Prepare template parameters
-        const templateParams = {
-            from_name: name,
-            from_email: email,
-            message: message,
-            to_name: 'Adriteyo Das'
-        };
-        
-        emailjs.send('service_y8jcxc7', 'template_flri54n', templateParams) 
-            .then(function(response) {
-                // Success
-                successMessage.classList.remove('hidden');
-                errorMessage.classList.add('hidden');
-                
-                // Reset form
-                contactForm.reset();
-        
-                // Restore button
-                submitButton.innerHTML = originalButtonText;
-                submitButton.disabled = false;
-                
-                // Hide success message after 5 seconds
-                setTimeout(() => {
-                    successMessage.classList.add('hidden');
-                }, 5000);
-            }, function(error) {
-                // Error
-                errorMessage.classList.remove('hidden');
-                successMessage.classList.add('hidden');
-                
-                // Restore button
-                submitButton.innerHTML = originalButtonText;
-                submitButton.disabled = false;
-                
-                // Log the error
-                console.error('EmailJS error:', error);
-                
-                // Hide error message after 5 seconds
-                setTimeout(() => {
-                    errorMessage.classList.add('hidden');
-                }, 5000);
-            });
+        // FormSubmit handles the rest automatically
     });
 });
