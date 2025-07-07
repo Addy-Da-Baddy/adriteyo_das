@@ -1,26 +1,26 @@
 :root {
-    /* Enhanced Dark theme variables */
+    /* Enhanced Dark theme variables with improved contrast */
     --bg-primary: #0a0a0a;
     --bg-secondary: #1a1a1a;
     --bg-tertiary: #2a2a2a;
     --bg-terminal: #0d1117;
-    --text-primary: #e6edf3;
-    --text-secondary: #58a6ff;
+    --text-primary: #ffffff;
+    --text-secondary: #72b6ff;
     --accent: #00ff88;
     --accent-alt: #ff4757;
-    --accent-red: #ff4757;
+    --accent-red: #ff5a6a;
     --accent-cyan: #8be9fd;
-    --border: #30363d;
-    --shadow: rgba(0, 0, 0, 0.6);
+    --border: #3a4249;
+    --shadow: rgba(0, 0, 0, 0.8);
     --code-bg: #1f2428;
-    --comment: #8b949e;
+    --comment: #a0adb9;
     --string: #a5d6ff;
     --keyword: #ff4757;
     --function: #50fa7b;
     --variable: #8be9fd;
-    --glow: 0 0 20px rgba(0, 255, 136, 0.3);
-    --glow-red: 0 0 20px rgba(255, 71, 87, 0.3);
-    --glow-cyan: 0 0 20px rgba(139, 233, 253, 0.3);
+    --glow: 0 0 20px rgba(0, 255, 136, 0.5);
+    --glow-red: 0 0 20px rgba(255, 71, 87, 0.5);
+    --glow-cyan: 0 0 20px rgba(139, 233, 253, 0.5);
     
     /* Common variables */
     --transition-speed: 0.3s;
@@ -46,12 +46,57 @@ body {
     transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
+/* Improved text contrast */
+
+/* Enhance contrast for all text */
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+}
+
+p {
+    color: #f0f0f0;
+    line-height: 1.7;
+}
+
+a {
+    font-weight: 500;
+}
+
+/* Make content sections more visible */
+section {
+    position: relative;
+    z-index: 1;
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    background-color: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(8px);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Enhance interactive elements */
+button, .btn {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
 /* Container */
 .container {
     width: 95%;
     max-width: 1080px;
     margin: 0 auto;
     padding: 15px 0;
+    position: relative;
+    z-index: 2;
+    background-color: rgba(10, 10, 10, 0.4);
+    backdrop-filter: blur(5px);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Header and Navigation */
@@ -392,10 +437,11 @@ header nav {
     border: 1px solid var(--border);
     padding: 15px;
     margin: 20px 0;
-    box-shadow: 0 5px 15px var(--shadow);
+    box-shadow: 0 5px 15px var(--shadow), 0 0 20px rgba(0, 255, 136, 0.2);
     animation: fadeInUp 1s ease 0.4s both, cyber-pulse 4s ease-in-out infinite;
     position: relative;
     overflow: hidden;
+    z-index: 10;
 }
 
 .terminal-container::before {
@@ -484,9 +530,15 @@ header nav {
 }
 
 .terminal-typing {
-    height: 30px;
+    height: 40px;
     display: flex;
     align-items: center;
+    background-color: rgba(13, 17, 23, 0.8);
+    border-radius: 4px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 0 10px;
+    position: relative;
+    z-index: 5;
 }
 
 .terminal-prompt {
@@ -498,6 +550,10 @@ header nav {
     color: var(--text-primary);
     font-size: 1.1rem;
     position: relative;
+    visibility: visible;
+    opacity: 1;
+    min-height: 1.5em;
+    display: inline-block;
 }
 
 .typed-text::before {
@@ -532,7 +588,7 @@ header nav {
     height: 1.2em;
     background-color: var(--accent);
     margin-left: 2px;
-    animation: blink 1s infinite;
+    animation: blink 0.8s step-end infinite;
 }
 
 .social-links {
@@ -922,6 +978,9 @@ section::before {
     cursor: pointer;
     transition: all var(--transition-speed);
     margin: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .btn i {
@@ -1765,6 +1824,16 @@ footer {
 
 .stat-item:nth-child(3) {
     animation-delay: 1s;
+}
+
+/* Add the missing blink animation */
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
 }
 
 /* Enhanced Glitch Effects with Color Flashes */

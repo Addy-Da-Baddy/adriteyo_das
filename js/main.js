@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
     
     const typedTextElement = document.querySelector('.typed-text');
-    console.log('Typed text element found:', typedTextElement);
+    console.log('Typed text element:', typedTextElement);
     
     if (typedTextElement) {
         let textIndex = 0;
@@ -199,38 +199,45 @@ document.addEventListener('DOMContentLoaded', function() {
         
         function typeEffect() {
             const currentText = textArray[textIndex];
+            console.log('Current typing:', currentText, 'at index:', charIndex);
             
             if (isDeleting) {
-                typedTextElement.textContent = currentText.substring(0, charIndex - 1);
+                typedTextElement.textContent = currentText.substring(0, charIndex);
                 charIndex--;
             } else {
                 typedTextElement.textContent = currentText.substring(0, charIndex + 1);
                 charIndex++;
             }
             
+            // Force visibility of text
+            typedTextElement.style.visibility = 'visible';
+            typedTextElement.style.opacity = '1';
+            
             // Update data-text attribute for glitch effect
             typedTextElement.setAttribute('data-text', typedTextElement.textContent);
             
+            // Dynamic typing speed
             let typeSpeed = isDeleting ? 50 : 100;
             
-            if (!isDeleting && charIndex === currentText.length) {
+            if (!isDeleting && charIndex >= currentText.length) {
+                // Pause at the end of typing
                 typeSpeed = 2000;
                 isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
+            } else if (isDeleting && charIndex < 0) {
                 isDeleting = false;
+                // Move to next text
                 textIndex = (textIndex + 1) % textArray.length;
                 typeSpeed = 500;
+                charIndex = 0;
             }
             
             setTimeout(typeEffect, typeSpeed);
         }
         
-        console.log('Starting typing animation...');
-        // Start immediately
+        // Start the typing animation immediately
         typeEffect();
     } else {
-        console.error('Typed text element not found - checking HTML structure');
-        console.log('Available elements:', document.querySelectorAll('.terminal-typing *'));
+        console.error('Typed text element not found!');
     }
     
     // Syntax highlighting for code snippets
