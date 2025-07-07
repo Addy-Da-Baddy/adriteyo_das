@@ -26,8 +26,14 @@ document.addEventListener('DOMContentLoaded', function() {
     glitchOverlay.appendChild(manifestoContainer);
     
     // Prepare the manifesto text
-    const manifestoText = `Adriteyo Das
-    `;
+    const manifestoText = `SYSTEM BREACH
+    DIGITAL REBELLION IN PROGRESS
+    CHALLENGING CONVENTIONS
+    DEFYING BOUNDARIES
+    REJECT THE ORDINARY
+    EMBRACE THE GLITCH
+    THIS IS NOT A BUG, IT'S A FEATURE
+    [01100101 01111000 01110000 01101100 01101111 01110010 01100101]`;
     
     // Process the manifesto text and create animated characters
     const lines = manifestoText.split('\n').filter(line => line.trim().length > 0);

@@ -1,0 +1,183 @@
+/* Section and Element Hover Animations */
+
+/* Section hover effects */
+.about-section, 
+.education-section, 
+.skills-section, 
+.achievements-section, 
+.experience-section,
+.projects-section,
+.resume-section,
+.hobbies-section,
+.contact-section {
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-section:hover, 
+.education-section:hover, 
+.skills-section:hover, 
+.achievements-section:hover, 
+.experience-section:hover,
+.projects-section:hover,
+.resume-section:hover,
+.hobbies-section:hover,
+.contact-section:hover {
+    transform: translateY(-5px);
+}
+
+.about-section:hover::before, 
+.education-section:hover::before, 
+.skills-section:hover::before, 
+.achievements-section:hover::before, 
+.experience-section:hover::before,
+.projects-section:hover::before,
+.resume-section:hover::before,
+.hobbies-section:hover::before,
+.contact-section:hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.15);
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0;
+    animation: pulse-shadow 2s ease infinite;
+}
+
+@keyframes pulse-shadow {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Skill tags hover with logo popup */
+.skill-tag {
+    position: relative;
+    overflow: visible !important;
+}
+
+.skill-tag::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    filter: drop-shadow(0 0 5px rgba(var(--accent-rgb), 0.5));
+    z-index: 10;
+}
+
+.skill-tag:hover::after {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+}
+
+/* Skill logos */
+.skill-tag[data-text="python"]::after {
+    background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg');
+}
+
+.skill-tag[data-text="c/c++"]::after {
+    background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg');
+}
+
+.skill-tag[data-text="java"]::after {
+    background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg');
+}
+
+.skill-tag[data-text="javascript"]::after {
+    background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg');
+}
+
+.skill-tag[data-text="sql"]::after {
+    background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg');
+}
+
+.skill-tag[data-text="bash"]::after {
+    background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg');
+}
+
+.skill-tag[data-text="html/css"]::after {
+    background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg');
+}
+
+.skill-tag[data-text="latex"]::after {
+    background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/latex/latex-original.svg');
+}
+
+.skill-tag[data-text="pytorch"]::after {
+    background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg');
+}
+
+.skill-tag[data-text="hugging face"]::after {
+    background-image: url('https://huggingface.co/front/assets/huggingface_logo-noborder.svg');
+}
+
+.skill-tag[data-text="flask"]::after {
+    background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg');
+}
+
+.skill-tag[data-text="react.js"]::after {
+    background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg');
+}
+
+.skill-tag[data-text="opencv"]::after {
+    background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg');
+}
+
+.skill-tag[data-text="docker"]::after {
+    background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg');
+}
+
+.skill-tag[data-text="git"]::after {
+    background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg');
+}
+
+.skill-tag[data-text="mysql"]::after {
+    background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg');
+}
+
+.skill-tag[data-text="redis"]::after {
+    background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg');
+}
+
+/* Generic logos for concepts */
+.skill-tag[data-text="computer vision"]::after,
+.skill-tag[data-text="nlp"]::after,
+.skill-tag[data-text="gans"]::after,
+.skill-tag[data-text="bert"]::after,
+.skill-tag[data-text="cnn"]::after,
+.skill-tag[data-text="transfer learning"]::after,
+.skill-tag[data-text="volatility"]::after,
+.skill-tag[data-text="wireshark"]::after,
+.skill-tag[data-text="ida pro"]::after,
+.skill-tag[data-text="ghidra"]::after,
+.skill-tag[data-text="binary analysis"]::after,
+.skill-tag[data-text="reverse engineering"]::after,
+.skill-tag[data-text="dfir"]::after,
+.skill-tag[data-text="jwt"]::after,
+.skill-tag[data-text="prophet"]::after,
+.skill-tag[data-text="streamlit"]::after,
+.skill-tag[data-text="cuda"]::after,
+.skill-tag[data-text="rest apis"]::after,
+.skill-tag[data-text="xgboost"]::after,
+.skill-tag[data-text="openlayers"]::after {
+    background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg');
+    opacity: 0.8;
+}
