@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Binary Rain
+    initBinaryRain();
+    
     // Load vanilla-tilt.js for 3D card effects
     const tiltScript = document.createElement('script');
     tiltScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js';
@@ -178,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Typing Animation
+    // Fixed Typing Animation
     const textArray = [
         "Deepfake Detection.",
         "xAI for Healthcare.",
@@ -187,41 +190,48 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
     
     const typedTextElement = document.querySelector('.typed-text');
-    let textIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
+    console.log('Typed text element found:', typedTextElement);
     
-    function typeEffect() {
-        const currentText = textArray[textIndex];
+    if (typedTextElement) {
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
         
-        if (isDeleting) {
-            // Remove a character
-            typedTextElement.textContent = currentText.substring(0, charIndex - 1);
-            charIndex--;
-        } else {
-            // Add a character
-            typedTextElement.textContent = currentText.substring(0, charIndex + 1);
-            charIndex++;
+        function typeEffect() {
+            const currentText = textArray[textIndex];
+            
+            if (isDeleting) {
+                typedTextElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typedTextElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            
+            // Update data-text attribute for glitch effect
+            typedTextElement.setAttribute('data-text', typedTextElement.textContent);
+            
+            let typeSpeed = isDeleting ? 50 : 100;
+            
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % textArray.length;
+                typeSpeed = 500;
+            }
+            
+            setTimeout(typeEffect, typeSpeed);
         }
         
-        // Typing speed
-        let typeSpeed = isDeleting ? 50 : 100;
-        
-        // If word is complete, wait and then start deleting
-        if (!isDeleting && charIndex === currentText.length) {
-            typeSpeed = 1500; // Wait before starting to delete
-            isDeleting = true;
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            textIndex = (textIndex + 1) % textArray.length; // Move to next text
-            typeSpeed = 500; // Wait before typing next word
-        }
-        
-        setTimeout(typeEffect, typeSpeed);
+        console.log('Starting typing animation...');
+        // Start immediately
+        typeEffect();
+    } else {
+        console.error('Typed text element not found - checking HTML structure');
+        console.log('Available elements:', document.querySelectorAll('.terminal-typing *'));
     }
-    
-    // Start the typing animation
-    setTimeout(typeEffect, 1000);
     
     // Syntax highlighting for code snippets
     function applySyntaxHighlighting() {
@@ -447,4 +457,298 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }, 2000 + Math.random() * 3000);
     });
+    
+    // Enhanced Matrix Effect for Background
+    function createEnhancedMatrixEffect() {
+        const matrixCanvas = document.createElement('canvas');
+        matrixCanvas.id = 'matrix-canvas';
+        matrixCanvas.style.position = 'fixed';
+        matrixCanvas.style.top = '0';
+        matrixCanvas.style.left = '0';
+        matrixCanvas.style.width = '100%';
+        matrixCanvas.style.height = '100%';
+        matrixCanvas.style.zIndex = '-2';
+        matrixCanvas.style.opacity = '0.1';
+        document.body.appendChild(matrixCanvas);
+        
+        const ctx = matrixCanvas.getContext('2d');
+        matrixCanvas.width = window.innerWidth;
+        matrixCanvas.height = window.innerHeight;
+        
+        const chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン";
+        const fontSize = 14;
+        const columns = matrixCanvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+        
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.04)';
+            ctx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+            
+            ctx.fillStyle = '#00ff88';
+            ctx.font = fontSize + 'px monospace';
+            
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                if (drops[i] * fontSize > matrixCanvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+        
+        setInterval(drawMatrix, 50);
+        
+        window.addEventListener('resize', () => {
+            matrixCanvas.width = window.innerWidth;
+            matrixCanvas.height = window.innerHeight;
+        });
+    }
+    
+    createEnhancedMatrixEffect();
+    
+    // Particle System for Hobbies Section
+    function createParticleSystem() {
+        const hobbiesSection = document.getElementById('hobbies');
+        if (!hobbiesSection) return;
+        
+        const particleContainer = document.createElement('div');
+        particleContainer.className = 'particle-container';
+        particleContainer.style.position = 'absolute';
+        particleContainer.style.top = '0';
+        particleContainer.style.left = '0';
+        particleContainer.style.width = '100%';
+        particleContainer.style.height = '100%';
+        particleContainer.style.pointerEvents = 'none';
+        particleContainer.style.overflow = 'hidden';
+        
+        hobbiesSection.style.position = 'relative';
+        hobbiesSection.appendChild(particleContainer);
+        
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.position = 'absolute';
+            particle.style.width = '3px';
+            particle.style.height = '3px';
+            particle.style.background = '#00ff88';
+            particle.style.borderRadius = '50%';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = '100%';
+            particle.style.opacity = '0.7';
+            particle.style.animation = 'floatUp 4s linear forwards';
+            
+            particleContainer.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 4000);
+        }
+        
+        // Add CSS for float animation
+        if (!document.querySelector('#floatUpAnimation')) {
+            const style = document.createElement('style');
+            style.id = 'floatUpAnimation';
+            style.textContent = `
+                @keyframes floatUp {
+                    0% {
+                        transform: translateY(0) rotate(0deg);
+                        opacity: 0.7;
+                    }
+                    100% {
+                        transform: translateY(-100vh) rotate(360deg);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        setInterval(createParticle, 500);
+    }
+    
+    // Initialize particle system when hobbies section is visible
+    const hobbiesObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                createParticleSystem();
+                hobbiesObserver.unobserve(entry.target);
+            }
+        });
+    });
+    
+    const hobbiesSection = document.getElementById('hobbies');
+    if (hobbiesSection) {
+        hobbiesObserver.observe(hobbiesSection);
+    }
+    
+    // Enhanced glitch effect for Cryptonite logo
+    const cryptoniteLogo = document.querySelector('.cryptonite-logo');
+    if (cryptoniteLogo) {
+        setInterval(() => {
+            if (Math.random() > 0.8) {
+                cryptoniteLogo.style.filter = 'hue-rotate(180deg) saturate(2)';
+                setTimeout(() => {
+                    cryptoniteLogo.style.filter = 'none';
+                }, 100);
+            }
+        }, 2000);
+    }
 });
+
+// Binary Rain Effect
+function initBinaryRain() {
+    const binaryRain = document.getElementById('binary-rain');
+    if (!binaryRain) return;
+    
+    const chars = '01';
+    const columnCount = Math.floor(window.innerWidth / 20);
+    
+    function createBinaryColumn() {
+        const column = document.createElement('div');
+        column.style.position = 'absolute';
+        column.style.left = Math.random() * window.innerWidth + 'px';
+        column.style.top = '-100px';
+        column.style.width = '20px';
+        column.style.textAlign = 'center';
+        
+        const char = document.createElement('span');
+        char.className = 'binary-char';
+        char.textContent = chars[Math.floor(Math.random() * chars.length)];
+        char.style.fontSize = (8 + Math.random() * 8) + 'px';
+        char.style.opacity = Math.random() * 0.8 + 0.2;
+        
+        column.appendChild(char);
+        binaryRain.appendChild(column);
+        
+        // Remove column after animation
+        setTimeout(() => {
+            if (column.parentNode) {
+                column.parentNode.removeChild(column);
+            }
+        }, 15000);
+    }
+    
+    // Create initial columns
+    for (let i = 0; i < columnCount; i++) {
+        setTimeout(createBinaryColumn, Math.random() * 5000);
+    }
+    
+    // Continuously create new columns
+    setInterval(createBinaryColumn, 200);
+}
+
+// Enhanced Glitch Effects with Color Flashes (Less Frequent)
+function addRandomGlitches() {
+    const elements = document.querySelectorAll('.skill-tag, .project-card h3, .section-header h2, .terminal-title');
+    
+    elements.forEach(element => {
+        // Much more infrequent - only 10% chance
+        if (Math.random() > 0.9) {
+            const glitchType = Math.random();
+            
+            if (glitchType > 0.7) {
+                // Intense glitch with color flashes
+                element.style.animation = 'intense-glitch 0.8s ease-in-out';
+            } else if (glitchType > 0.4) {
+                // Color flash glitch
+                element.style.animation = 'color-flash 0.4s ease-in-out';
+            } else {
+                // Regular glitch
+                element.style.animation = 'glitch 0.3s ease-in-out';
+            }
+            
+            setTimeout(() => {
+                element.style.animation = '';
+            }, 800);
+        }
+    });
+}
+
+// Trigger random glitches much less frequently
+setInterval(addRandomGlitches, 15000); // Every 15 seconds instead of 8
+
+// Add occasional screen flash effect
+function screenFlash() {
+    const flash = document.createElement('div');
+    flash.style.position = 'fixed';
+    flash.style.top = '0';
+    flash.style.left = '0';
+    flash.style.width = '100vw';
+    flash.style.height = '100vh';
+    flash.style.backgroundColor = 'rgba(0, 255, 136, 0.1)';
+    flash.style.zIndex = '9999';
+    flash.style.pointerEvents = 'none';
+    flash.style.animation = 'color-flash 0.2s ease-out';
+    
+    document.body.appendChild(flash);
+    
+    setTimeout(() => {
+        document.body.removeChild(flash);
+    }, 200);
+}
+
+// Rare screen flashes
+setInterval(() => {
+    if (Math.random() > 0.95) {
+        screenFlash();
+    }
+}, 30000); // Check every 30 seconds
+
+// Auto-glitch effect for section headings and hero name
+function triggerAutoGlitch() {
+    const glitchElements = document.querySelectorAll('.glitch-auto');
+    
+    glitchElements.forEach(element => {
+        // Skip if element is already glitching
+        if (element.classList.contains('glitch-active')) {
+            return;
+        }
+        
+        // Random chance for each element to glitch (much more frequent)
+        if (Math.random() > 0.3) {
+            element.classList.add('glitch-active');
+            
+            // Remove glitch effect after animation completes
+            setTimeout(() => {
+                element.classList.remove('glitch-active');
+            }, 300);
+        }
+    });
+}
+
+// Trigger auto-glitch for headings every 1-3 seconds (very frequent)
+function scheduleAutoGlitch() {
+    const randomInterval = Math.random() * 2000 + 1000; // 1-3 seconds
+    setTimeout(() => {
+        triggerAutoGlitch();
+        scheduleAutoGlitch(); // Schedule the next one
+    }, randomInterval);
+}
+
+// Start the auto-glitch cycle
+scheduleAutoGlitch();
+
+// Special handling for hero name - more frequent glitches
+function triggerHeroGlitch() {
+    const heroName = document.querySelector('.name.glitch-auto');
+    if (heroName && !heroName.classList.contains('glitch-active')) {
+        heroName.classList.add('glitch-active');
+        
+        setTimeout(() => {
+            heroName.classList.remove('glitch-active');
+        }, 300);
+    }
+}
+
+// Hero name glitches every 2-4 seconds (very frequent)
+function scheduleHeroGlitch() {
+    const randomInterval = Math.random() * 2000 + 2000; // 2-4 seconds
+    setTimeout(() => {
+        triggerHeroGlitch();
+        scheduleHeroGlitch(); // Schedule the next one
+    }, randomInterval);
+}
+
+// Start the hero glitch cycle
+scheduleHeroGlitch();

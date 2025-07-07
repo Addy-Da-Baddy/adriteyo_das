@@ -170,6 +170,46 @@
         font-size: 0.8rem;
         padding: 5px 10px;
     }
+    
+    .cryptonite-showcase {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .cryptonite-logo {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .team-stats {
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .hobbies-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .hobby-card {
+        padding: 25px 20px;
+    }
+    
+    .hobby-icon {
+        font-size: 2rem;
+    }
+    
+    .education-item {
+        margin-bottom: 25px;
+    }
+    
+    .stat-item {
+        font-size: 0.75rem;
+        padding: 4px 8px;
+    }
 }
 
 @media (max-width: 576px) {
@@ -208,5 +248,27 @@
     .skill-tag {
         font-size: 0.75rem;
         padding: 4px 8px;
+    }
+    
+    .hobby-card {
+        padding: 20px 15px;
+    }
+    
+    .hobby-icon {
+        font-size: 1.8rem;
+    }
+    
+    .cryptonite-logo {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .team-stats {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .stat-item {
+        font-size: 0.7rem;
     }
 }
