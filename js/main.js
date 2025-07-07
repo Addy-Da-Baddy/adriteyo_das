@@ -181,6 +181,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Cool navigation effects for navbar
+    navLinks.forEach(link => {
+        link.addEventListener('mouseenter', () => {
+            link.classList.add('nav-glitch');
+        });
+        link.addEventListener('mouseleave', () => {
+            link.classList.remove('nav-glitch');
+        });
+    });
+    
     // Fixed Typing Animation
     const textArray = [
         "Deepfake Detection.",
@@ -600,6 +610,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 100);
             }
         }, 2000);
+    }
+    
+    // Add event listener to launch destroyer game on clicking the .name, .original-name, or .hacker-alias
+    const heroName = document.querySelector('.name');
+    const destroyerGame = document.getElementById('destroyer-game');
+    if (heroName && destroyerGame) {
+        function showDestroyerGame() {
+            destroyerGame.style.display = 'flex';
+        }
+        heroName.addEventListener('click', showDestroyerGame);
+        const originalName = heroName.querySelector('.original-name');
+        const hackerAlias = heroName.querySelector('.hacker-alias');
+        if (originalName) originalName.addEventListener('click', showDestroyerGame);
+        if (hackerAlias) hackerAlias.addEventListener('click', showDestroyerGame);
     }
 });
 

@@ -69,6 +69,15 @@ document.addEventListener('DOMContentLoaded', function() {
     glitchAudio.appendChild(audioSource1);
     document.body.appendChild(glitchAudio);
     
+    // On first user interaction, trigger the glitch effect ONCE
+    let glitchTriggered = false;
+    function triggerGlitchOnceAfterInteraction() {
+        if (!glitchTriggered) {
+            glitchTriggered = true;
+            triggerGlitch();
+        }
+    }
+    
     // Function to trigger the glitch effect
     function triggerGlitch() {
         // For accessing in other scopes
@@ -170,22 +179,16 @@ document.addEventListener('DOMContentLoaded', function() {
         document.removeEventListener('touchstart', userInteractionHandler);
     }
     
-    // Add event listeners for user interaction
-    document.addEventListener('click', userInteractionHandler);
-    document.addEventListener('keydown', userInteractionHandler);
-    document.addEventListener('touchstart', userInteractionHandler);
-    
-    // Set interval to trigger glitch every 30 seconds
-    function scheduleNextGlitch() {
-        const interval = 30000; // 30 seconds
-        setTimeout(() => {
-            triggerGlitch();
-            scheduleNextGlitch();
-        }, interval);
+    // After DOMContentLoaded, wait for user interaction, then trigger glitch ONCE
+    function onFirstInteraction() {
+        triggerGlitchOnceAfterInteraction();
+        document.removeEventListener('click', onFirstInteraction);
+        document.removeEventListener('keydown', onFirstInteraction);
+        document.removeEventListener('touchstart', onFirstInteraction);
     }
-    
-    // Start the glitch cycle after 5 seconds (give time for page to load)
-    setTimeout(scheduleNextGlitch, 5000);
+    document.addEventListener('click', onFirstInteraction);
+    document.addEventListener('keydown', onFirstInteraction);
+    document.addEventListener('touchstart', onFirstInteraction);
     
     // Add a keyboard shortcut to manually trigger the glitch effect (for testing)
     document.addEventListener('keydown', function(event) {
